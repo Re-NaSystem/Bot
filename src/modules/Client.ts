@@ -6,7 +6,7 @@ import {
   IntentsBitField,
   User,
 } from 'discord.js';
-import { CommandType } from '../types/Command';
+import { ChatCommandType, CommandType } from '../types/Command';
 import glob from 'glob';
 import { promisify } from 'util';
 import { Event } from './Event';
@@ -41,11 +41,15 @@ export class ExtendedClient extends Client {
       footer: string;
     };
   }
+
   connect() {
     if (!process.env.MONGODB_CONNECTION_STRING) return false;
     return mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
   }
-  commands: Collection<string, CommandType> = new Collection();
+
+  public commands: Collection<string, CommandType> = new Collection();
+  public chatCommands: Collection<string, ChatCommandType> = new Collection();
+
   constructor() {
     super({
       intents: [
@@ -59,6 +63,7 @@ export class ExtendedClient extends Client {
       ],
     });
   }
+
   start() {
     this.registerModules().then(() =>
       console.log(chalk.cyan(`[+] モジュールを読み込みました`))
@@ -68,15 +73,22 @@ export class ExtendedClient extends Client {
     );
     this.connect();
   }
+
   async importFile(filePath: string) {
     return (await import(filePath))?.default;
   }
 
   async registerModules() {
+    const chatCmds: any[] = [];
     const slashCommands: ApplicationCommandDataResolvable[] = [];
+    
     const commandFiles = await globPromise(
       __dirname + `/../commands/*/*{.ts,.js}`
     );
+    const chatCommandFiles = await globPromise(
+      __dirname + `/../chatCommands/*/*{.ts,.js}`
+    )
+
     for (const filePath of commandFiles) {
       const command: CommandType = await this.importFile(filePath);
       if (!command.name) continue;
@@ -85,6 +97,16 @@ export class ExtendedClient extends Client {
       );
       this.commands.set(command.name, command);
       slashCommands.push(command);
+    }
+
+    for (const filePath of chatCommandFiles) {
+      const command: ChatCommandType = await this.importFile(filePath)
+      if (!command.name) continue;
+      console.log(
+        chalk.blue(`[+] /${command.name}を読み込みました(${filePath})`)
+      )
+      this.chatCommands.set(command.name, command)
+      chatCmds.push(command)
     }
 
     this.on('ready', () => {
@@ -114,7 +136,6 @@ export class ExtendedClient extends Client {
         });
     });
 
-    // Event
     const eventFiles = await globPromise(`${__dirname}/../events/*{.ts,.js}`);
     for (const filePath of eventFiles) {
       const event: Event<keyof ClientEvents> = await this.importFile(filePath);
