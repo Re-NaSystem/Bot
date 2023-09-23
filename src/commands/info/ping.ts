@@ -9,7 +9,7 @@ export default new Command({
 
     const embed = new EmbedBuilder()
       .setTitle('🏓 Pong!')
-      .setDescription(`WebSocket Ratency: ${client.ws.ping}`)
+      .setDescription(`WebSocket Ratency: ${client.ws.ping}ms`)
       .setColor(Colors.Aqua)
       .setFooter({
         text: client.getUserData().footer,
