@@ -4,10 +4,10 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start": "run-p start:*",
+    "up": "npm-run-all start:build start:run",
     "start:build": "tsc -p .",
     "start:run": "node dist/index.js",
-    "start:dev": "ts-node -T src/index.ts",
+    "dev": "ts-node -T src/index.ts",
     "lint": "run-p lint:eslint format",
     "lint:eslint": "eslint src/**/*",
     "format": "prettier --write ."

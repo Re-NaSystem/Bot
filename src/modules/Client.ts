@@ -65,10 +65,10 @@ export class ExtendedClient extends Client {
 
   start() {
     this.registerModules().then(() =>
-      console.log(chalk.cyan(`[+] モジュールを読み込みました`))
+    console.log(`\x1b[32mModules has been loaded \x1b[0m`)
     );
     this.login(process.env.CLIENT_TOKEN).then(() =>
-      console.log(chalk.cyan(`[+] ログインしました`))
+      console.log(`\x1b[36mI am now logged in. \x1b[0m`)
     );
     this.connect();
   }
@@ -87,37 +87,22 @@ export class ExtendedClient extends Client {
     for (const filePath of commandFiles) {
       const command: CommandType = await this.importFile(filePath);
       if (!command.name) continue;
-      console.log(
-        chalk.green(`[+] /${command.name}を読み込みました(${filePath})`)
-      );
+
+      console.log(`\x1b[32m/${command.name} has been loaded\x1b[0m`)
+
       this.commands.set(command.name, command);
       slashCommands.push(command);
     }
 
     this.on('ready', () => {
-      this.application?.commands.set([]);
-      this.guilds.cache
-        .map((guild) => guild.id)
-        .forEach((guildId) => {
-          const guild = this.guilds.cache.get(guildId);
-          guild?.commands.set([]);
-          guild?.commands
-            .set(slashCommands)
-            .then(() => {
-              console.log(
-                chalk.green(
-                  `[+] ${guild?.name}で${slashCommands.length}個のスラッシュコマンドを正常に登録しました`
-                )
-              );
-            })
-            .catch(async (e) => {
-              console.log(
-                chalk.red(
-                  `[-] ${guild?.name}でスラッシュコマンドの登録に失敗しました`
-                )
-              );
-              console.log(`=> ${e}`);
-            });
+      this.application?.commands.set(slashCommands)
+        .then(() => {
+          console.log(`\x1b[36m${slashCommands.length} slash command successfully registered\x1b[0m`);
+        })
+        .catch(async (e) => {
+          console.log(`\x1b[31mFailed to register slash command.\x1b[0m`);
+          
+          console.log(`=> ${e}`);
         });
     });
 

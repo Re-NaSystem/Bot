@@ -3,9 +3,9 @@ import { Command } from '../../modules';
 
 export default new Command({
   name: 'ping',
-  description: 'Test the bot response time',
+  description: 'Measure the response speed of the bot.',
   run: async ({ client, interaction }) => {
-    interaction.deferReply();
+    await interaction.deferReply();
 
     const embed = new EmbedBuilder()
       .setTitle('🏓 Pong!')
@@ -16,7 +16,7 @@ export default new Command({
         iconURL: client.getUserData().icon,
       });
 
-    interaction.followUp({
+    await interaction.followUp({
       embeds: [embed],
     });
   },
