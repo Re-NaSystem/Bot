@@ -22,7 +22,7 @@ export class ExtendedClient extends Client {
     return splitted_usertag[1] === '0' ? user.username : user?.tag;
   }
 
-  gerUserData(userId?: string) {
+  getUserData(userId?: string) {
     const user: User | undefined = this.users.cache.get(
       userId || '1004365048887660655'
     );
