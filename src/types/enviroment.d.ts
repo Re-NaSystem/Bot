@@ -5,7 +5,6 @@ declare global {
       CLIENT_ID: string;
       CLIENT_SECRET: string;
       MONGODB_CONNECTION_STRING: string;
-      PREFIX: string;
     }
   }
 }
