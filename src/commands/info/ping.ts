@@ -7,17 +7,17 @@ export default new Command({
   run: async ({ client, interaction }) => {
     await interaction.deferReply();
 
-    const embed = new EmbedBuilder()
-      .setTitle('🏓 Pong!')
-      .setDescription(`WebSocket Ratency: ${client.ws.ping}ms`)
-      .setColor(Colors.Aqua)
-      .setFooter({
-        text: client.getUserData().footer,
-        iconURL: client.getUserData().icon,
-      });
-
     await interaction.followUp({
-      embeds: [embed],
+      embeds: [
+        new EmbedBuilder()
+        .setTitle('🏓 Pong!')
+        .setDescription(`WebSocket Ratency: ${client.ws.ping}ms`)
+        .setColor(Colors.Aqua)
+        .setFooter({
+          text: client.getUserData().footer,
+          iconURL: client.getUserData().icon,
+        })
+      ],
     });
   },
 });
