@@ -15,15 +15,7 @@ interface RunOptions {
 
 type RunFunction = (options: RunOptions) => any;
 
-type ChatCommandRunFunction = (options: { client: ExtendedClient, message: Message, args: string[] }) => any;
-
 export type CommandType = {
   userPermissions?: PermissionResolvable[];
   run: RunFunction;
 } & ChatInputApplicationCommandData;
-
-export type ChatCommandType = {
-  name: string;
-  description: string;
-  run: ChatCommandRunFunction 
-}

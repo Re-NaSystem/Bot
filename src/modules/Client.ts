@@ -6,7 +6,7 @@ import {
   IntentsBitField,
   User,
 } from 'discord.js';
-import { ChatCommandType, CommandType } from '../types/Command';
+import { CommandType } from '../types/Command';
 import glob from 'glob';
 import { promisify } from 'util';
 import { Event } from './Event';
@@ -48,7 +48,6 @@ export class ExtendedClient extends Client {
   }
 
   public commands: Collection<string, CommandType> = new Collection();
-  public chatCommands: Collection<string, ChatCommandType> = new Collection();
 
   constructor() {
     super({
@@ -79,15 +78,11 @@ export class ExtendedClient extends Client {
   }
 
   async registerModules() {
-    const chatCmds: any[] = [];
     const slashCommands: ApplicationCommandDataResolvable[] = [];
     
     const commandFiles = await globPromise(
       __dirname + `/../commands/*/*{.ts,.js}`
     );
-    const chatCommandFiles = await globPromise(
-      __dirname + `/../chatCommands/*/*{.ts,.js}`
-    )
 
     for (const filePath of commandFiles) {
       const command: CommandType = await this.importFile(filePath);
@@ -97,16 +92,6 @@ export class ExtendedClient extends Client {
       );
       this.commands.set(command.name, command);
       slashCommands.push(command);
-    }
-
-    for (const filePath of chatCommandFiles) {
-      const command: ChatCommandType = await this.importFile(filePath)
-      if (!command.name) continue;
-      console.log(
-        chalk.blue(`[+] /${command.name}を読み込みました(${filePath})`)
-      )
-      this.chatCommands.set(command.name, command)
-      chatCmds.push(command)
     }
 
     this.on('ready', () => {
