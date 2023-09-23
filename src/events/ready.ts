@@ -8,13 +8,7 @@ export default new Event('ready', async () => {
   
   console.log(`\x1b[32mWebSocket Ratency: ${client.ws.ping}\x1b[0m`);
 
-  setInterval(async () => {
-    client.user?.setActivity({
-      name: '/help'
-    })
-    setTimeout(5000)
-    client.user?.setActivity({
-      name: client.getUserData().footer
-    })
-  }, 10000)
+  client.user?.setActivity({
+    name: `/help | ${client.guilds.cache.size} servers`
+  })
 });
