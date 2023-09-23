@@ -15,12 +15,10 @@ export default new Command({
     }
   ],
   run: async ({ client, interaction }) => {
-    await interaction.deferReply()
-
     const member: GuildMember = interaction.guild?.members.cache.get(interaction.user.id) as GuildMember
 
     if (!member || interaction.channel?.type !== ChannelType.GuildText) {
-      return await interaction.followUp({
+      return await interaction.reply({
         embeds: [
           new EmbedBuilder()
           .setTitle('An unexpected error has occurred.')
@@ -35,7 +33,7 @@ export default new Command({
     }
 
     if (!member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
-      return await interaction.followUp({
+      return await interaction.reply({
         embeds: [
           new EmbedBuilder()
           .setTitle('Missing permissions.')
@@ -51,7 +49,7 @@ export default new Command({
     
     await interaction.channel.bulkDelete(interaction.options.getNumber("amount") || 10);
 
-    await interaction.followUp({
+    await interaction.reply({
       embeds: [
         new EmbedBuilder()
         .setTitle('Success!')

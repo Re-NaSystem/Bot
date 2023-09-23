@@ -7,16 +7,17 @@ exports.default = new modules_1.Command({
     description: 'Measure the response speed of the bot.',
     run: async ({ client, interaction }) => {
         await interaction.deferReply();
-        const embed = new discord_js_1.EmbedBuilder()
-            .setTitle('🏓 Pong!')
-            .setDescription(`WebSocket Ratency: ${client.ws.ping}`)
-            .setColor(discord_js_1.Colors.Aqua)
-            .setFooter({
-            text: client.getUserData().footer,
-            iconURL: client.getUserData().icon,
-        });
         await interaction.followUp({
-            embeds: [embed],
+            embeds: [
+                new discord_js_1.EmbedBuilder()
+                    .setTitle('🏓 Pong!')
+                    .setDescription(`WebSocket Ratency: ${client.ws.ping}ms`)
+                    .setColor(discord_js_1.Colors.Aqua)
+                    .setFooter({
+                    text: client.getUserData().footer,
+                    iconURL: client.getUserData().icon,
+                })
+            ],
         });
     },
 });
