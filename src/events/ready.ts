@@ -1,4 +1,3 @@
-import { setTimeout } from 'timers/promises';
 import { client } from '..';
 import { Event } from '../modules/index';
 
