@@ -37,7 +37,7 @@ export default new Command({
     await interaction.deferReply();
     if (!interaction.guild) return;
 
-    await interaction.reply({
+    await interaction.followUp({
       embeds: [
         new EmbedBuilder()
           .setTitle('チャンネルを作成中...')
