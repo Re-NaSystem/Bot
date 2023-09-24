@@ -65,7 +65,7 @@ export class ExtendedClient extends Client {
 
   start() {
     this.registerModules().then(() =>
-    console.log(`\x1b[32mModules has been loaded \x1b[0m`)
+      console.log(`\x1b[32mModules has been loaded \x1b[0m`)
     );
     this.login(process.env.CLIENT_TOKEN).then(() =>
       console.log(`\x1b[36mI am now logged in. \x1b[0m`)
@@ -88,20 +88,23 @@ export class ExtendedClient extends Client {
       const command: CommandType = await this.importFile(filePath);
       if (!command.name) continue;
 
-      console.log(`\x1b[32m/${command.name} has been loaded\x1b[0m`)
+      console.log(`\x1b[32m/${command.name} has been loaded\x1b[0m`);
 
       this.commands.set(command.name, command);
       slashCommands.push(command);
     }
 
     this.on('ready', () => {
-      this.application?.commands.set(slashCommands)
+      this.application?.commands
+        .set(slashCommands)
         .then(() => {
-          console.log(`\x1b[36m${slashCommands.length} slash command successfully registered\x1b[0m`);
+          console.log(
+            `\x1b[36m${slashCommands.length} slash command successfully registered\x1b[0m`
+          );
         })
         .catch(async (e) => {
           console.log(`\x1b[31mFailed to register slash command.\x1b[0m`);
-          
+
           console.log(`=> ${e}`);
         });
     });

@@ -10,13 +10,13 @@ export default new Command({
     await interaction.followUp({
       embeds: [
         new EmbedBuilder()
-        .setTitle('🏓 Pong!')
-        .setDescription(`WebSocket Ratency: ${client.ws.ping}ms`)
-        .setColor(Colors.Aqua)
-        .setFooter({
-          text: client.getUserData().footer,
-          iconURL: client.getUserData().icon,
-        })
+          .setTitle('🏓 Pong!')
+          .setDescription(`WebSocket Ratency: ${client.ws.ping}ms`)
+          .setColor(Colors.Aqua)
+          .setFooter({
+            text: client.getUserData().footer,
+            iconURL: client.getUserData().icon,
+          }),
       ],
     });
   },
