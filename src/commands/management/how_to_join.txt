@@ -1,0 +1,19 @@
+@everyone
+【マイクラマルチサーバーのアドレス・ポート】
+
+> JE（Java版）
+> アドレス: mc.gakerbot.net
+> ポート: 25565
+> バージョン: 1.8.9～1.20.1
+
+> BE（統合版）
+> アドレス: mc.gakerbot.net
+> ポート: 19132
+> バージョン: 最新
+
+※Nintendo Switchでの参加方法は下の動画をご覧ください
+> https://youtu.be/bZWHDhKoqnc
+
+※Nintendo Switchでの参加は、別途Nintendo Onlineへの加入が必要です
+
+※サーバー参加にはアカウントのリンクが必要です。詳細は #🔗｜リンク方法 で確認してください
