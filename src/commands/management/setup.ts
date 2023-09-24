@@ -8,10 +8,10 @@ export default new Command({
   run: async ({ client, interaction }) => {
     if (interaction.user.id !== client.getUserData().userId) return interaction.reply(`${client.getUserData().usertag}のみ実行可能です`)
 
-    const rule_msg = await readFileSync("rule.txt", 'utf-8')
-    const how_to_join_msg = await readFileSync("how_to_join.txt", 'utf-8')
-    const how_to_link_msg = await readFileSync("how_to_link.txt", 'utf-8')
-    const channel_description_msg = await readFileSync("channel_description.txt", 'utf-8')
+    const rule_msg = await readFileSync("./rule.txt", 'utf-8')
+    const how_to_join_msg = await readFileSync("./how_to_join.txt", 'utf-8')
+    const how_to_link_msg = await readFileSync("./how_to_link.txt", 'utf-8')
+    const channel_description_msg = await readFileSync("./channel_description.txt", 'utf-8')
 
     await interaction.deferReply();
     if (!interaction.guild) return;
