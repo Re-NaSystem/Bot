@@ -1,14 +1,34 @@
 {
-  "error.unexpectederror.title": "An unexpected error has occurred.",
-  "error.unexpectederror.description": "If it is not corrected, please visit our support server.",
-  "error.missingpermissions.title": "Missing Permissions.",
-  "error.missingpermissions.manage_messages": "You must have `Manage Messages` permission to run this command.",
-  "command.ping.title": "🏓 Pong!",
-  "command.ping.description": "WebSocket Ratency: {ping}ms",
-  "command.purge.success.title": "Success!",
-  "command.purge.success.description": ":white_check_mark: Deleted {messages} messages.",
-  "command.verification.button.panel.title": "Easy-Verification",
-  "command.verification.button.panel.description": "Click on the button to authenticate.\nRoles will be assigned upon completion of authentication.",
-  "command.language.title": "Language has been changed",
-  "command.language.description": "Bot language has been changed to `English`"
+  "error": {
+    "unexpectederror": {
+      "title": "An unexpected error has occurred.",
+      "description": "If it is not corrected, please visit our support server."
+    },
+    "missingpermissions": {
+      "manage_messages": "You must have `Manage Messages` permission to run this command."
+    }
+  },
+  "command": {
+    "ping": {
+      "title": "🏓 Pong!",
+      "description":"WebSocket Ratency: {ping}ms"
+    },
+    "purge": {
+      "success": {
+        "title": "Success!",
+        "description": ":white_check_mark: Deleted {messages} messages."
+      }
+    },
+    "verification": {
+      "panel": {
+        "title": "Easy-Verification",
+        "description": "Click on the button to authenticate.\nRoles will be assigned upon completion of authentication."
+      }
+    },
+    "language": {
+      "title": "Language has been changed",
+      "description": "Bot language has been changed to `English`"
+    }
+  }
 }
+
