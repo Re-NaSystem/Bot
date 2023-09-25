@@ -7,13 +7,7 @@ import {
   PermissionsBitField,
 } from 'discord.js';
 import { Command } from '../../modules';
-const i18n = require('i18n');
-i18n.configure({
-  locales: ['ja_jp', 'en_us'],
-  defaultLocale: 'ja_jp',
-  directory: '../../i18n',
-  objectNotation: true,
-});
+import model from '../../models/language'
 
 export default new Command({
   name: 'purge',
@@ -29,6 +23,9 @@ export default new Command({
     },
   ],
   run: async ({ client, interaction }) => {
+    const data = await model.findOne({ GuildID: interaction.guild?.id });
+    if (data) client.i18n.setLocale(data.GuildID as string);
+
     const member: GuildMember = interaction.guild?.members.cache.get(
       interaction.user.id
     ) as GuildMember;
