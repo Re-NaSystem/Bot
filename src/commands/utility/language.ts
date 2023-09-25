@@ -1,6 +1,6 @@
 import { Command } from '../../modules';
 import model from '../../models/language';
-import { ApplicationCommandOptionType, Colors, EmbedBuilder } from 'discord.js';
+import { ApplicationCommandOptionType, ChannelType, Colors, EmbedBuilder, GuildMember, PermissionsBitField } from 'discord.js';
 const i18n = require('i18n');
 i18n.configure({
   locales: ['ja_jp', 'en_us'],
@@ -32,6 +32,42 @@ export default new Command({
   ],
   run: async ({ client, interaction }) => {
     await interaction.deferReply();
+
+    const member: GuildMember = interaction.guild?.members.cache.get(
+      interaction.user.id
+    ) as GuildMember;
+
+    if (!member || interaction.channel?.type !== ChannelType.GuildText) {
+      return await interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setTitle(client.i18n.__('error.unexpectederror.title'))
+            .setDescription(client.i18n.__('error.unexpectederror.description'))
+            .setColor(Colors.Red)
+            .setFooter({
+              text: client.getUserData().footer,
+              iconURL: client.getUserData().icon,
+            }),
+        ],
+      });
+    }
+
+    if (!member.permissions.has(PermissionsBitField.Flags.ManageGuild)) {
+      return await interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setTitle(client.i18n.__('error.missingpermissions.title'))
+            .setDescription(
+              client.i18n.__('error.missingpermissions.manage_guild')
+            )
+            .setColor(Colors.Red)
+            .setFooter({
+              text: client.getUserData().footer,
+              iconURL: client.getUserData().icon,
+            }),
+        ],
+      });
+    }
 
     const language = interaction.options.getString('language') as
       | 'ja_jp'

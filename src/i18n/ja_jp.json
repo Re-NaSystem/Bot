@@ -5,7 +5,8 @@
       "description": "修正されない場合は、サポートサーバーにお問い合わせください。"
     },
     "missingpermissions": {
-      "manage_messages": "このコマンドを実行するには`メッセージの管理`権限が必要です"
+      "manage_messages": "このコマンドを実行するには`メッセージの管理`権限が必要です",
+      "manage_guild": "このコマンドを実行するには`サーバーの管理`権限が必要です"
     }
   },
   "command": {

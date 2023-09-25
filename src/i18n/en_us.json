@@ -5,7 +5,8 @@
       "description": "If it is not corrected, please visit our support server."
     },
     "missingpermissions": {
-      "manage_messages": "You must have `Manage Messages` permission to run this command."
+      "manage_messages": "You must have `Manage Messages` permission to run this command.",
+      "manage_guild": "You must have `Manage Guild` permission to run this command."
     }
   },
   "command": {
