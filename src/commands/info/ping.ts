@@ -18,7 +18,7 @@ export default new Command({
           .setDescription(
             client.i18n
               .__('command.ping.description')
-              .replace('{ping}', `${client.ws.ping}`)
+              .replace('{ping}', `${Date.now() - interaction.createdTimestamp}`)
           )
           .setColor(Colors.Aqua)
           .setFooter({
