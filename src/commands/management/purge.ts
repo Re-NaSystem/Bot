@@ -7,6 +7,7 @@ import {
   PermissionsBitField,
 } from 'discord.js';
 import { Command } from '../../modules';
+import i18n from 'i18n';
 
 export default new Command({
   name: 'purge',
@@ -30,10 +31,8 @@ export default new Command({
       return await interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle('An unexpected error has occurred.')
-            .setDescription(
-              `If it is not corrected, please visit our support server.`
-            )
+            .setTitle(i18n.__('error.unexpectederror.title'))
+            .setDescription(i18n.__('error.unexpectederror.description'))
             .setColor(Colors.Red)
             .setFooter({
               text: client.getUserData().footer,
@@ -47,10 +46,8 @@ export default new Command({
       return await interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle('Missing permissions.')
-            .setDescription(
-              'You must have `Manage Messages` permission to run this command.'
-            )
+            .setTitle(i18n.__('error.missingpermissions.title'))
+            .setDescription(i18n.__('error.missingpermissions.manage_messages'))
             .setColor(Colors.Red)
             .setFooter({
               text: client.getUserData().footer,
@@ -67,9 +64,9 @@ export default new Command({
     await interaction.reply({
       embeds: [
         new EmbedBuilder()
-          .setTitle(client.i18n.__('command.purge.success.title'))
+          .setTitle(i18n.__('command.purge.success.title'))
           .setDescription(
-            client.i18n
+            i18n
               .__('command.purge.success.description')
               .replace(
                 '{messages}',

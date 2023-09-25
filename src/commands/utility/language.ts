@@ -1,6 +1,7 @@
 import { Command } from '../../modules';
 import model from '../../models/language';
 import { ApplicationCommandOptionType, Colors, EmbedBuilder } from 'discord.js';
+import i18n from 'i18n';
 
 export default new Command({
   name: 'language',
@@ -37,13 +38,13 @@ export default new Command({
       Language: language,
     });
 
-    await client.i18n.setLocale(language);
+    await i18n.setLocale(language);
 
     interaction.followUp({
       embeds: [
         new EmbedBuilder()
-          .setTitle(client.i18n.__('command.language.title'))
-          .setDescription(client.i18n.__('command.language.description'))
+          .setTitle(i18n.__('command.language.title'))
+          .setDescription(i18n.__('command.language.description'))
           .setColor(Colors.Aqua)
           .setFooter({
             text: client.getUserData().footer,

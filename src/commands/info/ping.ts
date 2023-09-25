@@ -1,7 +1,7 @@
 import { Colors, EmbedBuilder } from 'discord.js';
 import { Command } from '../../modules';
 import model from '../../models/language';
-import { Document } from 'mongoose';
+import i18n from 'i18n';
 
 export default new Command({
   name: 'ping',
@@ -15,9 +15,9 @@ export default new Command({
     await interaction.followUp({
       embeds: [
         new EmbedBuilder()
-          .setTitle(client.i18n.__('command.ping.title'))
+          .setTitle(i18n.__('command.ping.title'))
           .setDescription(
-            client.i18n
+            i18n
               .__('command.ping.description')
               .replace('{ping}', `${client.ws.ping}`)
           )
