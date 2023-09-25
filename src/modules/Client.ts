@@ -20,7 +20,7 @@ export class ExtendedClient extends Client {
   public i18n = new I18n({
     locales: ['ja_jp', 'en_us'],
     defaultLocale: 'ja_jp',
-    directory: '../i18n',
+    directory: __dirname + '/../i18n',
     objectNotation: true,
   });
 
