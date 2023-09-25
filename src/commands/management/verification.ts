@@ -1,4 +1,4 @@
-import { ApplicationCommandOptionType, EmbedBuilder } from 'discord.js';
+import { ApplicationCommandOptionType, Colors, EmbedBuilder } from 'discord.js';
 import { Command } from '../../modules';
 
 export default new Command({
@@ -40,7 +40,11 @@ export default new Command({
               )
               .setDescription(
                 client.i18n.__('command.verification.button.panel.description')
-              ),
+              ).setColor(Colors.Aqua)
+              .setFooter({
+                text: client.getUserData().footer,
+                iconURL: client.getUserData().icon,
+              }),
           ],
         });
 
