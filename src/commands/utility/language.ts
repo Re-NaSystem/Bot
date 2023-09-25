@@ -24,7 +24,7 @@ export default new Command({
     },
   ],
   run: async ({ client, interaction }) => {
-    interaction.deferReply();
+    await interaction.deferReply();
 
     const language = interaction.options.getString('language') as
       | 'ja_jp'
