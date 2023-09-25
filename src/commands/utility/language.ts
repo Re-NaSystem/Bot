@@ -1,7 +1,7 @@
 import { Command } from '../../modules';
 import model from '../../models/language';
 import { ApplicationCommandOptionType, Colors, EmbedBuilder } from 'discord.js';
-const i18n = require("i18n")
+const i18n = require('i18n');
 
 export default new Command({
   name: 'language',

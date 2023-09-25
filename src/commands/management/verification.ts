@@ -1,6 +1,6 @@
 import { ApplicationCommandOptionType, Colors, EmbedBuilder } from 'discord.js';
 import { Command } from '../../modules';
-const i18n = require("i18n")
+const i18n = require('i18n');
 
 export default new Command({
   name: 'verification',
