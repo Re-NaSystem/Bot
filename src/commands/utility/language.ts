@@ -18,24 +18,26 @@ export default new Command({
         {
           name: 'English(US)',
           value: 'en_us',
-        }
+        },
       ],
-      required: true
+      required: true,
     },
   ],
   run: async ({ client, interaction }) => {
-    interaction.deferReply()
+    interaction.deferReply();
 
-    const language = interaction.options.getString("language") as "ja_jp" | "en_us"
+    const language = interaction.options.getString('language') as
+      | 'ja_jp'
+      | 'en_us';
 
-    await model.findOneAndDelete({ GuildID: interaction.guild?.id })
+    await model.findOneAndDelete({ GuildID: interaction.guild?.id });
 
     await model.create({
       GuildID: interaction.guild?.id,
-      Language: language
-    })
+      Language: language,
+    });
 
-    await client.i18n.setLocale(language)
+    await client.i18n.setLocale(language);
 
     interaction.followUp({
       embeds: [
@@ -46,8 +48,8 @@ export default new Command({
           .setFooter({
             text: client.getUserData().footer,
             iconURL: client.getUserData().icon,
-          })
-      ]
-    })
+          }),
+      ],
+    });
   },
 });

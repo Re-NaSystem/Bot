@@ -40,7 +40,8 @@ export default new Command({
               )
               .setDescription(
                 client.i18n.__('command.verification.button.panel.description')
-              ).setColor(Colors.Aqua)
+              )
+              .setColor(Colors.Aqua)
               .setFooter({
                 text: client.getUserData().footer,
                 iconURL: client.getUserData().icon,
