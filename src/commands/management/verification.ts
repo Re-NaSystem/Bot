@@ -43,10 +43,10 @@ export default new Command({
           embeds: [
             new EmbedBuilder()
               .setTitle(
-                client.i18n.__('command.verification.button.panel.title')
+                await client.i18n.__('command.verification.button.panel.title')
               )
               .setDescription(
-                client.i18n.__('command.verification.button.panel.description')
+                await client.i18n.__('command.verification.button.panel.description')
               )
               .setColor(Colors.Aqua)
               .setFooter({

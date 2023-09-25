@@ -49,8 +49,8 @@ export default new Command({
     interaction.followUp({
       embeds: [
         new EmbedBuilder()
-          .setTitle(await i18n.__('command.language.title'))
-          .setDescription(await i18n.__('command.language.description'))
+          .setTitle(await client.i18n.__('command.language.title'))
+          .setDescription(await client.i18n.__('command.language.description'))
           .setColor(Colors.Aqua)
           .setFooter({
             text: client.getUserData().footer,
