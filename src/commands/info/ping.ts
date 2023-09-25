@@ -1,13 +1,6 @@
 import { Colors, EmbedBuilder } from 'discord.js';
 import { Command } from '../../modules';
 import model from '../../models/language';
-const i18n = require('i18n');
-i18n.configure({
-  locales: ['ja_jp', 'en_us'],
-  defaultLocale: 'ja_jp',
-  directory: '../../i18n',
-  objectNotation: true,
-});
 
 export default new Command({
   name: 'ping',
@@ -21,9 +14,9 @@ export default new Command({
     await interaction.followUp({
       embeds: [
         new EmbedBuilder()
-          .setTitle(await i18n.__('command.ping.title'))
+          .setTitle(client.i18n.__('command.ping.title'))
           .setDescription(
-            i18n
+            client.i18n
               .__('command.ping.description')
               .replace('{ping}', `${client.ws.ping}`)
           )
