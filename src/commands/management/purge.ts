@@ -37,8 +37,8 @@ export default new Command({
       return await interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle(await client.i18n.__('error.unexpectederror.title'))
-            .setDescription(await client.i18n.__('error.unexpectederror.description'))
+            .setTitle(client.i18n.__('error.unexpectederror.title'))
+            .setDescription(client.i18n.__('error.unexpectederror.description'))
             .setColor(Colors.Red)
             .setFooter({
               text: client.getUserData().footer,
@@ -52,9 +52,9 @@ export default new Command({
       return await interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle(await client.i18n.__('error.missingpermissions.title'))
+            .setTitle(client.i18n.__('error.missingpermissions.title'))
             .setDescription(
-              await client.i18n.__('error.missingpermissions.manage_messages')
+              client.i18n.__('error.missingpermissions.manage_messages')
             )
             .setColor(Colors.Red)
             .setFooter({
@@ -72,9 +72,9 @@ export default new Command({
     await interaction.reply({
       embeds: [
         new EmbedBuilder()
-          .setTitle(await client.i18n.__('command.purge.success.title'))
+          .setTitle(client.i18n.__('command.purge.success.title'))
           .setDescription(
-            await client.i18n
+            client.i18n
               .__('command.purge.success.description')
               .replace(
                 '{messages}',
