@@ -1,6 +1,12 @@
 import { ApplicationCommandOptionType, Colors, EmbedBuilder } from 'discord.js';
 import { Command } from '../../modules';
 const i18n = require('i18n');
+i18n.configure({
+  locales: ['ja_jp', 'en_us'],
+  defaultLocale: 'ja_jp',
+  directory: '../../i18n',
+  objectNotation: true,
+});
 
 export default new Command({
   name: 'verification',
