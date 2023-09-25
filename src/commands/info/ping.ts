@@ -10,8 +10,8 @@ export default new Command({
     await interaction.followUp({
       embeds: [
         new EmbedBuilder()
-          .setTitle('🏓 Pong!')
-          .setDescription(`WebSocket Ratency: ${client.ws.ping}ms`)
+          .setTitle(client.i18n.__("command.ping.title"))
+          .setDescription(client.i18n.__("command.ping.description").replace('{ping}', `${client.ws.ping}`))
           .setColor(Colors.Aqua)
           .setFooter({
             text: client.getUserData().footer,

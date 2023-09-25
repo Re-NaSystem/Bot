@@ -67,11 +67,9 @@ export default new Command({
     await interaction.reply({
       embeds: [
         new EmbedBuilder()
-          .setTitle('Success!')
+          .setTitle(client.i18n.__('command.purge.success.title'))
           .setDescription(
-            `:white_check_mark: Deleted ${
-              interaction.options.getNumber('amount') || 10
-            } messages.`
+            client.i18n.__('command.purge.success.description').replace("{messages}", `${interaction.options.getNumber('amount') || "10"}`)
           )
           .setColor(Colors.Green)
           .setFooter({

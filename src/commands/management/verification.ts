@@ -35,8 +35,8 @@ export default new Command({
         interaction.followUp({
           embeds: [
             new EmbedBuilder()
-              .setTitle('Easy verification')
-              .setDescription('Click on the button to authenticate.\nRoles will be assigned upon completion of authentication.')
+              .setTitle(client.i18n.__('command.verification.button.panel.title'))
+              .setDescription(client.i18n.__('command.verification.button.panel.description'))
           ]
         })
 
