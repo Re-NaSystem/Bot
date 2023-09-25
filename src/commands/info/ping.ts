@@ -9,7 +9,7 @@ export default new Command({
     await interaction.deferReply();
 
     const data = await model.findOne({ GuildID: interaction.guild?.id });
-    if (data) i18n.setLocale(data.GuildID as string);
+    if (data) client.i18n.setLocale(data.GuildID as string);
 
     await interaction.followUp({
       embeds: [
