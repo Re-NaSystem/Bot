@@ -1,5 +1,7 @@
 import { Colors, EmbedBuilder } from 'discord.js';
 import { Command } from '../../modules';
+import model from '../../models/language';
+import { Document } from 'mongoose';
 
 export default new Command({
   name: 'ping',
@@ -7,11 +9,18 @@ export default new Command({
   run: async ({ client, interaction }) => {
     await interaction.deferReply();
 
+    const data = await model.findOne({ GuildID: interaction.guild?.id });
+    if (data) i18n.setLocale(data.GuildID as string);
+
     await interaction.followUp({
       embeds: [
         new EmbedBuilder()
-          .setTitle(client.i18n.__("command.ping.title"))
-          .setDescription(client.i18n.__("command.ping.description").replace('{ping}', `${client.ws.ping}`))
+          .setTitle(client.i18n.__('command.ping.title'))
+          .setDescription(
+            client.i18n
+              .__('command.ping.description')
+              .replace('{ping}', `${client.ws.ping}`)
+          )
           .setColor(Colors.Aqua)
           .setFooter({
             text: client.getUserData().footer,

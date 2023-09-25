@@ -12,8 +12,8 @@ export default new Command({
       choices: [
         {
           name: 'button',
-          value: 'button'
-        }
+          value: 'button',
+        },
       ],
       required: true,
     },
@@ -22,23 +22,27 @@ export default new Command({
       description: 'Roles granted upon completion of verification',
       type: ApplicationCommandOptionType.Role,
       required: true,
-    }
+    },
   ],
   run: async ({ client, interaction }) => {
-    await interaction.deferReply()
+    await interaction.deferReply();
 
-    const type = interaction.options.getString('type') as "button"
-    const role = interaction.options.getRole('role')
+    const type = interaction.options.getString('type') as 'button';
+    const role = interaction.options.getRole('role');
 
     switch (type) {
-      case "button":
+      case 'button':
         interaction.followUp({
           embeds: [
             new EmbedBuilder()
-              .setTitle(client.i18n.__('command.verification.button.panel.title'))
-              .setDescription(client.i18n.__('command.verification.button.panel.description'))
-          ]
-        })
+              .setTitle(
+                client.i18n.__('command.verification.button.panel.title')
+              )
+              .setDescription(
+                client.i18n.__('command.verification.button.panel.description')
+              ),
+          ],
+        });
 
         break;
     }

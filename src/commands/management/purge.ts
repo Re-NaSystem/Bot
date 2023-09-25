@@ -69,7 +69,12 @@ export default new Command({
         new EmbedBuilder()
           .setTitle(client.i18n.__('command.purge.success.title'))
           .setDescription(
-            client.i18n.__('command.purge.success.description').replace("{messages}", `${interaction.options.getNumber('amount') || "10"}`)
+            client.i18n
+              .__('command.purge.success.description')
+              .replace(
+                '{messages}',
+                `${interaction.options.getNumber('amount') || '10'}`
+              )
           )
           .setColor(Colors.Green)
           .setFooter({

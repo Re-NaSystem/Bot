@@ -9,7 +9,7 @@ import {
 import glob from 'glob';
 import { promisify } from 'util';
 import mongoose from 'mongoose';
-import { I18n } from 'i18n'
+import { I18n } from 'i18n';
 
 import { CommandType } from '../types/Command';
 import { Event } from './Event';
@@ -20,9 +20,9 @@ export class ExtendedClient extends Client {
   public i18n = new I18n({
     locales: ['ja_jp', 'en_us'],
     defaultLocale: 'ja_jp',
-    directory: __dirname + "/src/i18n",
-    objectNotation: true
-  })
+    directory: __dirname + '/src/i18n',
+    objectNotation: true,
+  });
 
   checkUserTag(userId: string) {
     const user: User = this.users.cache.get(userId) as User;
