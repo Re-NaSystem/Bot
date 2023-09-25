@@ -24,7 +24,7 @@ export default new Command({
   ],
   run: async ({ client, interaction }) => {
     const data = await model.findOne({ GuildID: interaction.guild?.id });
-    if (data) client.i18n.setLocale(data.GuildID as string);
+    if (data) client.i18n.setLocale(data.Language as string);
 
     const member: GuildMember = interaction.guild?.members.cache.get(
       interaction.user.id

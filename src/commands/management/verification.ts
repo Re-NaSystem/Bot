@@ -29,7 +29,7 @@ export default new Command({
     await interaction.deferReply();
 
     const data = await model.findOne({ GuildID: interaction.guild?.id });
-    if (data) client.i18n.setLocale(data.GuildID as string);
+    if (data) client.i18n.setLocale(data.Language as string);
 
     const type = interaction.options.getString('type') as 'button';
     const role = interaction.options.getRole('role');
