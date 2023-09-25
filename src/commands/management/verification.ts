@@ -36,9 +36,11 @@ export default new Command({
         interaction.followUp({
           embeds: [
             new EmbedBuilder()
-              .setTitle(i18n.__('command.verification.button.panel.title'))
+              .setTitle(
+                await i18n.__('command.verification.button.panel.title')
+              )
               .setDescription(
-                i18n.__('command.verification.button.panel.description')
+                await i18n.__('command.verification.button.panel.description')
               )
               .setColor(Colors.Aqua)
               .setFooter({

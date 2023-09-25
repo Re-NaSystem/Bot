@@ -15,7 +15,7 @@ export default new Command({
     await interaction.followUp({
       embeds: [
         new EmbedBuilder()
-          .setTitle(i18n.__('command.ping.title'))
+          .setTitle(await i18n.__('command.ping.title'))
           .setDescription(
             i18n
               .__('command.ping.description')
