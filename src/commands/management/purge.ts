@@ -7,7 +7,7 @@ import {
   PermissionsBitField,
 } from 'discord.js';
 import { Command } from '../../modules';
-import model from '../../models/language'
+import model from '../../models/language';
 
 export default new Command({
   name: 'purge',

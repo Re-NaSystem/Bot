@@ -1,6 +1,13 @@
 import { Command } from '../../modules';
 import model from '../../models/language';
-import { ApplicationCommandOptionType, ChannelType, Colors, EmbedBuilder, GuildMember, PermissionsBitField } from 'discord.js';
+import {
+  ApplicationCommandOptionType,
+  ChannelType,
+  Colors,
+  EmbedBuilder,
+  GuildMember,
+  PermissionsBitField,
+} from 'discord.js';
 
 export default new Command({
   name: 'language',

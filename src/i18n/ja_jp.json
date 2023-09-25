@@ -13,7 +13,7 @@
   "command": {
     "ping": {
       "title": "🏓 計測しました",
-      "description":"WebSocketレイテンシ: {ping}ms"
+      "description": "WebSocketレイテンシ: {ping}ms"
     },
     "purge": {
       "success": {
