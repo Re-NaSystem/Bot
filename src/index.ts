@@ -1,6 +1,6 @@
 require('dotenv').config();
 import { ExtendedClient } from './modules/index';
-import i18n from 'i18n';
+const i18n = require('i18n')
 
 export const client = new ExtendedClient();
 
