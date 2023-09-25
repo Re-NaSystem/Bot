@@ -73,7 +73,7 @@ export default new Command({
       Language: language,
     });
 
-    await i18n.setLocale(language);
+    client.i18n.setLocale(language);
 
     interaction.followUp({
       embeds: [
