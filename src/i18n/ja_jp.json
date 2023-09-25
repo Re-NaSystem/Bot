@@ -7,5 +7,7 @@
   "command.purge.success.title": "正常に完了しました",
   "command.purge.success.description": ":white_check_mark: {messages}メッセージを削除しました",
   "command.verification.panel.title": "簡易認証",
-  "command.verification.panel.description": "ボタンをクリックして認証してください。\n認証完了後、ロールが付与されます"
+  "command.verification.panel.description": "ボタンをクリックして認証してください。\n認証完了後、ロールが付与されます",
+  "command.language.title": "言語を変更しました",
+  "command.language.description": "Botの言語を`日本語`に変更しました"
 }
