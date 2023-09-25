@@ -7,7 +7,7 @@ import {
   PermissionsBitField,
 } from 'discord.js';
 import { Command } from '../../modules';
-import i18n from 'i18n';
+const i18n = require("i18n")
 
 export default new Command({
   name: 'purge',
