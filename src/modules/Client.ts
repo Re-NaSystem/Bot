@@ -9,14 +9,17 @@ import {
 import glob from 'glob';
 import { promisify } from 'util';
 import mongoose from 'mongoose';
-import i18n, { I18n } from 'i18n';
+import { I18n } from 'i18n';
 
 import { CommandType } from '../types/Command';
 import { Event } from './Event';
+import { Player } from 'discord-player';
 
 const globPromise = promisify(glob);
 
 export class ExtendedClient extends Client {
+  public player = new Player(this);
+
   public i18n = new I18n({
     locales: ['ja_jp', 'en_us'],
     defaultLocale: 'ja_jp',

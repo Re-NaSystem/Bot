@@ -30,6 +30,30 @@
     "language": {
       "title": "言語を変更しました",
       "description": "Botの言語を`日本語`に変更しました"
+    },
+    "track": {
+      "play": {
+        "pls_join_vc": {
+          "title": "エラーが発生しました",
+          "description": "ボイスチャンネルに参加してください"
+        },
+        "pls_join_botvc": {
+          "title": "エラーが発生しました",
+          "description": "Botと同じボイスチャンネルに参加してください"
+        },
+        "join_error": {
+          "title": "エラーが発生しました",
+          "description": "ボイスチャンネルに参加できませんでした"
+        },
+        "track_not_found": {
+          "title": "エラーが発生しました",
+          "description": "トラックが見つかりませんでした"
+        },
+        "add_track": {
+          "title": "キューに追加しました",
+          "description": "{track}をキューに追加しました"
+        }
+      }
     }
   }
 }
