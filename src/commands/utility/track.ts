@@ -1,6 +1,6 @@
-import { ApplicationCommandOptionType, Colors, EmbedBuilder } from 'discord.js';
+import { ApplicationCommandOptionType, Colors, EmbedBuilder, GuildResolvable } from 'discord.js';
 import { Command } from '../../modules';
-import { QueryType, useQueue } from 'discord-player';
+import { QueryType, Track, useQueue } from 'discord-player';
 
 export default new Command({
   name: 'track',
@@ -25,6 +25,15 @@ export default new Command({
     await interaction.deferReply();
 
     const subcommand = interaction.options.getSubcommand();
+
+    client.player.nodes.create(interaction.guild.id, {
+      metadata: {
+        channel: interaction.channel,
+      },
+      volume: 10,
+    });
+
+    const queue = useQueue(interaction.guild.id);
 
     switch (subcommand) {
       case 'play':
@@ -80,15 +89,6 @@ export default new Command({
             ],
           });
         }
-
-        client.player.nodes.create(interaction.guild.id, {
-          metadata: {
-            channel: interaction.channel,
-          },
-          volume: 10
-        });
-
-        const queue = useQueue(interaction.guild.id);
 
         try {
           if (!queue?.connection) {
@@ -152,7 +152,7 @@ export default new Command({
           queue?.tasksQueue.release();
         }
 
-        return await interaction.followUp({
+        await interaction.followUp({
           embeds: [
             new EmbedBuilder()
               .setTitle(client.i18n.__('command.track.play.add_track.title'))
@@ -169,6 +169,43 @@ export default new Command({
               }),
           ],
         });
+        break;
+      case 'queue':
+        if (!queue) {
+          return interaction.followUp({
+            embeds: [
+              new EmbedBuilder()
+                .setTitle("このサーバーでは何も再生されていません")
+                .setColor(Colors.Red)
+                .setFooter({
+                  text: client.getUserData().footer,
+                  iconURL: client.getUserData().icon,
+                }),
+            ],
+          })
+        }
+
+        const sorted_tracks = queue.tracks.data.slice(0, 10)
+
+        await interaction.followUp({
+          embeds: [
+            new EmbedBuilder()
+              .setTitle("キュー内の上位の楽曲を表示しています")
+              .addFields(
+                sorted_tracks.map((track: Track, index: number) => {
+                  return {
+                    name: `${index + 1}`,
+                    value: track.title as string,
+                  }
+                })
+              )
+              .setColor(Colors.Aqua)
+              .setFooter({
+                text: client.getUserData().footer,
+                iconURL: client.getUserData().icon,
+              })
+          ],
+        })
         break;
     }
   },
