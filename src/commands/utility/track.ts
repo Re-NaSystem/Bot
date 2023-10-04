@@ -19,6 +19,11 @@ export default new Command({
         },
       ],
     },
+    {
+      name: 'queue',
+      description: 'Displays the songs in the queue',
+      type: ApplicationCommandOptionType.Subcommand,
+    }
   ],
   run: async ({ client, interaction }) => {
     if (!interaction.guild) return;
