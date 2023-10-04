@@ -1,4 +1,9 @@
-import { ApplicationCommandOptionType, Colors, EmbedBuilder, GuildResolvable } from 'discord.js';
+import {
+  ApplicationCommandOptionType,
+  Colors,
+  EmbedBuilder,
+  GuildResolvable,
+} from 'discord.js';
 import { Command } from '../../modules';
 import { QueryType, Track, useQueue } from 'discord-player';
 
@@ -23,7 +28,7 @@ export default new Command({
       name: 'queue',
       description: 'Displays the songs in the queue',
       type: ApplicationCommandOptionType.Subcommand,
-    }
+    },
   ],
   run: async ({ client, interaction }) => {
     if (!interaction.guild) return;
@@ -180,37 +185,37 @@ export default new Command({
           return interaction.followUp({
             embeds: [
               new EmbedBuilder()
-                .setTitle("このサーバーでは何も再生されていません")
+                .setTitle('このサーバーでは何も再生されていません')
                 .setColor(Colors.Red)
                 .setFooter({
                   text: client.getUserData().footer,
                   iconURL: client.getUserData().icon,
                 }),
             ],
-          })
+          });
         }
 
-        const sorted_tracks = queue.tracks.data.slice(0, 10)
+        const sorted_tracks = queue.tracks.data.slice(0, 10);
 
         await interaction.followUp({
           embeds: [
             new EmbedBuilder()
-              .setTitle("キュー内の上位の楽曲を表示しています")
+              .setTitle('キュー内の上位の楽曲を表示しています')
               .addFields(
                 sorted_tracks.map((track: Track, index: number) => {
                   return {
                     name: `${index + 1}`,
                     value: track.title as string,
-                  }
+                  };
                 })
               )
               .setColor(Colors.Aqua)
               .setFooter({
                 text: client.getUserData().footer,
                 iconURL: client.getUserData().icon,
-              })
+              }),
           ],
-        })
+        });
         break;
     }
   },
