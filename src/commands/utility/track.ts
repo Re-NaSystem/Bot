@@ -201,13 +201,13 @@ export default new Command({
           embeds: [
             new EmbedBuilder()
               .setTitle('キュー内の上位の楽曲を表示しています')
-              .addFields(
-                sorted_tracks.map((track: Track, index: number) => {
-                  return {
-                    name: `${index + 1}`,
-                    value: track.title as string,
-                  };
-                })
+              .setDescription(
+                sorted_tracks
+                  .map(
+                    (track: Track, index: number) =>
+                      `${index + 1}) ${track.title as string}`
+                  )
+                  .join('\n')
               )
               .setColor(Colors.Aqua)
               .setFooter({
