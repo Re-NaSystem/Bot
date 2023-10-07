@@ -5,7 +5,7 @@ import {
   GuildResolvable,
 } from 'discord.js';
 import { Command } from '../../modules';
-import { QueryType, Track, useQueue } from 'discord-player';
+import { QueryType, QueueRepeatMode, Track, useQueue } from 'discord-player';
 
 export default new Command({
   name: 'track',
@@ -34,6 +34,25 @@ export default new Command({
       description: 'Stop playing music',
       type: ApplicationCommandOptionType.Subcommand,
     },
+    {
+      name: 'repeat',
+      description: 'Repeat playback of a song',
+      type: ApplicationCommandOptionType.Subcommand,
+      options: [
+        {
+          name: 'type',
+          description: 'Repeat mode',
+          type: ApplicationCommandOptionType.Number,
+          choices: [
+            { name: 'Off', value: 0 },
+            { name: 'Track', value: 1 },
+            { name: 'Queue', value: 2 },
+            { name: 'Autoplay', value: 3 },
+          ],
+          required: true
+        }
+      ]
+    }
   ],
   run: async ({ client, interaction }) => {
     if (!interaction.guild) return;
@@ -250,6 +269,47 @@ export default new Command({
               }),
           ],
         });
+        break;
+      case 'repeat':
+        if (!queue) {
+          return interaction.followUp({
+            embeds: [
+              new EmbedBuilder()
+                .setTitle(client.i18n.__('command.track.error.not_played'))
+                .setColor(Colors.Red)
+                .setFooter({
+                  text: client.getUserData().footer,
+                  iconURL: client.getUserData().icon,
+                }),
+            ],
+          });
+        }
+
+        const type = interaction.options.getNumber("type")
+
+        if (!type) return;
+
+        queue.setRepeatMode(type)
+
+        const modes = [
+          client.i18n.__('command.track.repeat.mode.off'),
+          client.i18n.__('command.track.repeat.mode.track'),
+          client.i18n.__('command.track.repeat.mode.queue'),
+          client.i18n.__('command.track.repeat.mode.autoplay'),
+        ]
+
+        await interaction.followUp({
+          embeds: [
+            new EmbedBuilder()
+              .setTitle(client.i18n.__('command.track.repeat.set').replace("{mode}", modes[type]))
+              .setColor(Colors.Aqua)
+              .setFooter({
+                text: client.getUserData().footer,
+                iconURL: client.getUserData().icon,
+              }),
+          ],
+        });
+        break;
     }
   },
 });

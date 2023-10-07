@@ -60,7 +60,16 @@
       "queue": {
         "show": "The top songs in the queue are shown."
       },
-      "stop": "Playback has been stopped."
+      "stop": "Playback has been stopped.",
+      "repeat": {
+        "set": "Repeat mode is set to {mode}.",
+        "mode": {
+          "off": "Off",
+          "track": "Track",
+          "queue": "Queue",
+          "autoplay": "Auto play"
+        }
+      }
     }
   }
 }
