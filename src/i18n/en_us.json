@@ -30,6 +30,36 @@
     "language": {
       "title": "Language has been changed",
       "description": "Bot language has been changed to `English`"
+    },
+    "track": {
+      "error": {
+        "not_played": "Nothing is playing on this server."
+      },
+      "play": {
+        "pls_join_vc": {
+          "title": "An error has occurred.",
+          "description": "Join the Voice Channel."
+        },
+        "pls_join_botvc": {
+          "title": "An error has occurred.",
+          "description": "Join the same voice channel as the bot."
+        },
+        "join_error": {
+          "title": "An error has occurred.",
+          "description": "Could not join voice channel."
+        },
+        "track_not_found": {
+          "title": "An error has occurred.",
+          "description": "Track not found"
+        },
+        "add_track": {
+          "title": "An error has occurred.",
+          "description": "{track} added to queue"
+        }
+      },
+      "queue": {
+        "show": "The top songs in the queue are shown."
+      }
     }
   }
 }

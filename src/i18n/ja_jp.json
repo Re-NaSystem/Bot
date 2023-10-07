@@ -32,6 +32,9 @@
       "description": "Botの言語を`日本語`に変更しました"
     },
     "track": {
+      "error": {
+        "not_played": "このサーバーでは何も再生されていません"
+      },
       "play": {
         "pls_join_vc": {
           "title": "エラーが発生しました",
@@ -53,6 +56,9 @@
           "title": "キューに追加しました",
           "description": "{track}をキューに追加しました"
         }
+      },
+      "queue": {
+        "show": "キュー内の上位の楽曲を表示しています"
       }
     }
   }

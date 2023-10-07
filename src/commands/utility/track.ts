@@ -185,7 +185,7 @@ export default new Command({
           return interaction.followUp({
             embeds: [
               new EmbedBuilder()
-                .setTitle('このサーバーでは何も再生されていません')
+                .setTitle(client.i18n.__('command.track.error.not_played'))
                 .setColor(Colors.Red)
                 .setFooter({
                   text: client.getUserData().footer,
@@ -200,12 +200,12 @@ export default new Command({
         await interaction.followUp({
           embeds: [
             new EmbedBuilder()
-              .setTitle('キュー内の上位の楽曲を表示しています')
+              .setTitle(client.i18n.__('command.track.queue.show'))
               .setDescription(
                 sorted_tracks
                   .map(
                     (track: Track, index: number) =>
-                      `${index + 1}) ${track.title as string}`
+                      `**${index + 1})** ${queue.currentTrack?.title}\n**${index + 2})** ${track.title as string}`
                   )
                   .join('\n')
               )
