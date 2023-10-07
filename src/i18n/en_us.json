@@ -59,7 +59,8 @@
       },
       "queue": {
         "show": "The top songs in the queue are shown."
-      }
+      },
+      "stop": "Playback has been stopped."
     }
   }
 }

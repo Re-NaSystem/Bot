@@ -29,6 +29,11 @@ export default new Command({
       description: 'Displays the songs in the queue',
       type: ApplicationCommandOptionType.Subcommand,
     },
+    {
+      name: 'stop',
+      description: 'Stop playing music',
+      type: ApplicationCommandOptionType.Subcommand,
+    },
   ],
   run: async ({ client, interaction }) => {
     if (!interaction.guild) return;
@@ -217,6 +222,34 @@ export default new Command({
           ],
         });
         break;
+      case 'stop':
+        if (!queue) {
+          return interaction.followUp({
+            embeds: [
+              new EmbedBuilder()
+                .setTitle(client.i18n.__('command.track.error.not_played'))
+                .setColor(Colors.Red)
+                .setFooter({
+                  text: client.getUserData().footer,
+                  iconURL: client.getUserData().icon,
+                }),
+            ],
+          });
+        }
+
+        queue.delete()
+
+        await interaction.followUp({
+          embeds: [
+            new EmbedBuilder()
+              .setTitle(client.i18n.__('command.track.stop'))
+              .setColor(Colors.Aqua)
+              .setFooter({
+                text: client.getUserData().footer,
+                iconURL: client.getUserData().icon,
+              }),
+          ],
+        });
     }
   },
 });
