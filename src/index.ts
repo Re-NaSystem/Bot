@@ -14,10 +14,10 @@ client.player.events.on('playerStart', (queue, track) => {
   queue.metadata.send({
     embeds: [
       new EmbedBuilder()
-        .setTitle(client.i18n.__('command.track.play.add_track.title'))
+        .setTitle(client.i18n.__('command.track.event'))
         .setDescription(
           client.i18n
-            .__('command.track.play.add_track.description')
+            .__('command.track.event')
             .replace('{track}', track.title)
         )
         .setThumbnail(track.thumbnail)
