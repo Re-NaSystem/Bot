@@ -1,5 +1,6 @@
 import {
   ApplicationCommandOptionType,
+  ChannelType,
   Colors,
   EmbedBuilder,
   GuildResolvable,
@@ -61,9 +62,7 @@ export default new Command({
     const subcommand = interaction.options.getSubcommand();
 
     client.player.nodes.create(interaction.guild.id, {
-      metadata: {
-        channel: interaction.channel,
-      },
+      metadata: interaction.channel,
       volume: 10,
     });
 
@@ -179,6 +178,8 @@ export default new Command({
         await entry?.getTask();
 
         queue?.addTrack(track);
+
+        if (interaction.channel?.type !== ChannelType.GuildText) return;
 
         try {
           if (!queue?.isPlaying()) await queue?.node.play();
