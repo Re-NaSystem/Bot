@@ -49,10 +49,10 @@ export default new Command({
             { name: 'Queue', value: 2 },
             { name: 'Autoplay', value: 3 },
           ],
-          required: true
-        }
-      ]
-    }
+          required: true,
+        },
+      ],
+    },
   ],
   run: async ({ client, interaction }) => {
     if (!interaction.guild) return;
@@ -229,7 +229,9 @@ export default new Command({
                 sorted_tracks
                   .map(
                     (track: Track, index: number) =>
-                      `**${index + 1})** ${queue.currentTrack?.title}\n**${index + 2})** ${track.title as string}`
+                      `**${index + 1})** ${queue.currentTrack?.title}\n**${
+                        index + 2
+                      })** ${track.title as string}`
                   )
                   .join('\n')
               )
@@ -256,7 +258,7 @@ export default new Command({
           });
         }
 
-        queue.delete()
+        queue.delete();
 
         await interaction.followUp({
           embeds: [
@@ -285,23 +287,27 @@ export default new Command({
           });
         }
 
-        const type = interaction.options.getNumber("type")
+        const type = interaction.options.getNumber('type');
 
         if (!type) return;
 
-        queue.setRepeatMode(type)
+        queue.setRepeatMode(type);
 
         const modes = [
           client.i18n.__('command.track.repeat.mode.off'),
           client.i18n.__('command.track.repeat.mode.track'),
           client.i18n.__('command.track.repeat.mode.queue'),
           client.i18n.__('command.track.repeat.mode.autoplay'),
-        ]
+        ];
 
         await interaction.followUp({
           embeds: [
             new EmbedBuilder()
-              .setTitle(client.i18n.__('command.track.repeat.set').replace("{mode}", modes[type]))
+              .setTitle(
+                client.i18n
+                  .__('command.track.repeat.set')
+                  .replace('{mode}', modes[type])
+              )
               .setColor(Colors.Aqua)
               .setFooter({
                 text: client.getUserData().footer,
