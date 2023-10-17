@@ -54,6 +54,11 @@ export default new Command({
         },
       ],
     },
+    {
+      name: 'skip',
+      description: 'Skip a song',
+      type: ApplicationCommandOptionType.Subcommand,
+    }
   ],
   run: async ({ client, interaction }) => {
     if (!interaction.guild) return;
@@ -308,6 +313,38 @@ export default new Command({
                 client.i18n
                   .__('command.track.repeat.set')
                   .replace('{mode}', modes[type])
+              )
+              .setColor(Colors.Aqua)
+              .setFooter({
+                text: client.getUserData().footer,
+                iconURL: client.getUserData().icon,
+              }),
+          ],
+        });
+        break;
+      case 'skip':
+        if (!queue) {
+          return interaction.followUp({
+            embeds: [
+              new EmbedBuilder()
+                .setTitle(client.i18n.__('command.track.error.not_played'))
+                .setColor(Colors.Red)
+                .setFooter({
+                  text: client.getUserData().footer,
+                  iconURL: client.getUserData().icon,
+                }),
+            ],
+          });
+        }
+
+        queue.node.skip()
+
+        await interaction.followUp({
+          embeds: [
+            new EmbedBuilder()
+              .setTitle(
+                client.i18n
+                  .__('command.track.skip')
               )
               .setColor(Colors.Aqua)
               .setFooter({

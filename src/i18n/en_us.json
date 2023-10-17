@@ -72,7 +72,8 @@
       },
       "event": {
         "playing": "Now playing: {track}"
-      }
+      },
+      "skip": "Skipped."
     }
   }
 }
