@@ -54,7 +54,8 @@
         },
         "add_track": {
           "title": "An error has occurred.",
-          "description": "{track} added to queue"
+          "description": "{track} added to queue",
+          "playlist": "{count} tracks added to queue"
         }
       },
       "queue": {

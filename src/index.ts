@@ -14,9 +14,11 @@ client.player.events.on('playerStart', (queue, track) => {
   queue.metadata.send({
     embeds: [
       new EmbedBuilder()
-        .setTitle(client.i18n
-          .__('command.track.event.playing')
-          .replace('{track}', track.title))
+        .setTitle(
+          client.i18n
+            .__('command.track.event.playing')
+            .replace('{track}', track.title)
+        )
         .setThumbnail(track.thumbnail)
         .setColor(Colors.Green)
         .setFooter({

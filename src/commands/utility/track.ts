@@ -58,7 +58,7 @@ export default new Command({
       name: 'skip',
       description: 'Skip a song',
       type: ApplicationCommandOptionType.Subcommand,
-    }
+    },
   ],
   run: async ({ client, interaction }) => {
     if (!interaction.guild) return;
@@ -150,12 +150,10 @@ export default new Command({
           });
         }
 
-        const track = await client.player
-          .search(term, {
-            requestedBy: interaction.user,
-            searchEngine: QueryType.YOUTUBE,
-          })
-          .then((x) => x.tracks[0]);
+        const track = await client.player.search(term, {
+          requestedBy: interaction.user,
+          searchEngine: QueryType.YOUTUBE,
+        });
 
         if (!track) {
           return await interaction.followUp({
@@ -182,9 +180,43 @@ export default new Command({
 
         await entry?.getTask();
 
-        queue?.addTrack(track);
-
-        if (interaction.channel?.type !== ChannelType.GuildText) return;
+        if (track.tracks.length >= 1) {
+          track.tracks.forEach((x) => queue?.addTrack(x));
+          await interaction.followUp({
+            embeds: [
+              new EmbedBuilder()
+                .setTitle(client.i18n.__('command.track.play.add_track.title'))
+                .setDescription(
+                  client.i18n
+                    .__('command.track.play.add_track.playlist')
+                    .replace('{count}', track.tracks.length.toString())
+                )
+                .setColor(Colors.Green)
+                .setFooter({
+                  text: client.getUserData().footer,
+                  iconURL: client.getUserData().icon,
+                }),
+            ],
+          });
+        } else {
+          await interaction.followUp({
+            embeds: [
+              new EmbedBuilder()
+                .setTitle(client.i18n.__('command.track.play.add_track.title'))
+                .setDescription(
+                  client.i18n
+                    .__('command.track.play.add_track.description')
+                    .replace('{track}', track.tracks[0].title)
+                )
+                .setThumbnail(track.tracks[0].thumbnail)
+                .setColor(Colors.Green)
+                .setFooter({
+                  text: client.getUserData().footer,
+                  iconURL: client.getUserData().icon,
+                }),
+            ],
+          });
+        }
 
         try {
           if (!queue?.isPlaying()) await queue?.node.play();
@@ -192,23 +224,6 @@ export default new Command({
           queue?.tasksQueue.release();
         }
 
-        await interaction.followUp({
-          embeds: [
-            new EmbedBuilder()
-              .setTitle(client.i18n.__('command.track.play.add_track.title'))
-              .setDescription(
-                client.i18n
-                  .__('command.track.play.add_track.description')
-                  .replace('{track}', track.title)
-              )
-              .setThumbnail(track.thumbnail)
-              .setColor(Colors.Green)
-              .setFooter({
-                text: client.getUserData().footer,
-                iconURL: client.getUserData().icon,
-              }),
-          ],
-        });
         break;
       case 'queue':
         if (!queue) {
@@ -337,15 +352,12 @@ export default new Command({
           });
         }
 
-        queue.node.skip()
+        queue.node.skip();
 
         await interaction.followUp({
           embeds: [
             new EmbedBuilder()
-              .setTitle(
-                client.i18n
-                  .__('command.track.skip')
-              )
+              .setTitle(client.i18n.__('command.track.skip'))
               .setColor(Colors.Aqua)
               .setFooter({
                 text: client.getUserData().footer,

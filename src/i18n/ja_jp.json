@@ -54,7 +54,8 @@
         },
         "add_track": {
           "title": "キューに追加しました",
-          "description": "{track}をキューに追加しました"
+          "description": "{track}をキューに追加しました",
+          "playlist": "{count}個のトラックをキューに追加しました"
         }
       },
       "queue": {
