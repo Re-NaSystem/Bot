@@ -152,7 +152,6 @@ export default new Command({
 
         const track = await client.player.search(term, {
           requestedBy: interaction.user,
-          searchEngine: QueryType.YOUTUBE,
         });
 
         if (!track) {
@@ -226,7 +225,7 @@ export default new Command({
 
         break;
       case 'queue':
-        if (!queue) {
+        if (queue?.isEmpty() || !queue) {
           return interaction.followUp({
             embeds: [
               new EmbedBuilder()
@@ -265,7 +264,7 @@ export default new Command({
         });
         break;
       case 'stop':
-        if (!queue) {
+        if (queue?.isEmpty() || !queue) {
           return interaction.followUp({
             embeds: [
               new EmbedBuilder()
@@ -294,7 +293,7 @@ export default new Command({
         });
         break;
       case 'repeat':
-        if (!queue) {
+        if (queue?.isEmpty() || !queue) {
           return interaction.followUp({
             embeds: [
               new EmbedBuilder()
@@ -338,7 +337,7 @@ export default new Command({
         });
         break;
       case 'skip':
-        if (!queue) {
+        if (queue?.isEmpty() || !queue) {
           return interaction.followUp({
             embeds: [
               new EmbedBuilder()
