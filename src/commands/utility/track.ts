@@ -246,14 +246,13 @@ export default new Command({
             new EmbedBuilder()
               .setTitle(client.i18n.__('command.track.queue.show'))
               .setDescription(
-                sorted_tracks
-                  .map(
-                    (track: Track, index: number) =>
-                      `**${index + 1})** ${queue.currentTrack?.title}\n**${
-                        index + 2
-                      })** ${track.title as string}`
-                  )
-                  .join('\n')
+                `**1)** ${queue.currentTrack?.title}\n` +
+                  sorted_tracks
+                    .map(
+                      (track: Track, index: number) =>
+                        `**${index + 2})** ${track.title as string}`
+                    )
+                    .join('\n')
               )
               .setColor(Colors.Aqua)
               .setFooter({
