@@ -59,6 +59,11 @@ export default new Command({
       description: 'Skip a song',
       type: ApplicationCommandOptionType.Subcommand,
     },
+    {
+      name: 'shufful',
+      description: 'Shuffuling the queue',
+      type: ApplicationCommandOptionType.Subcommand,
+    },
   ],
   run: async ({ client, interaction }) => {
     if (!interaction.guild) return;
@@ -356,6 +361,35 @@ export default new Command({
           embeds: [
             new EmbedBuilder()
               .setTitle(client.i18n.__('command.track.skip'))
+              .setColor(Colors.Aqua)
+              .setFooter({
+                text: client.getUserData().footer,
+                iconURL: client.getUserData().icon,
+              }),
+          ],
+        });
+        break;
+      case 'shufful':
+        if (queue?.isEmpty() || !queue) {
+          return interaction.followUp({
+            embeds: [
+              new EmbedBuilder()
+                .setTitle(client.i18n.__('command.track.error.not_played'))
+                .setColor(Colors.Red)
+                .setFooter({
+                  text: client.getUserData().footer,
+                  iconURL: client.getUserData().icon,
+                }),
+            ],
+          });
+        }
+
+        queue.tracks.shuffle();
+
+        await interaction.followUp({
+          embeds: [
+            new EmbedBuilder()
+              .setTitle(client.i18n.__('command.track.shufful'))
               .setColor(Colors.Aqua)
               .setFooter({
                 text: client.getUserData().footer,
