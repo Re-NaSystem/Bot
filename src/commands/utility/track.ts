@@ -1,12 +1,6 @@
-import {
-  ApplicationCommandOptionType,
-  ChannelType,
-  Colors,
-  EmbedBuilder,
-  GuildResolvable,
-} from 'discord.js';
-import { Command } from '../../modules';
-import { QueryType, QueueRepeatMode, Track, useQueue } from 'discord-player';
+import { ApplicationCommandOptionType, Colors, EmbedBuilder } from 'discord.js';
+import { Command } from '@/lib/classes/Command';
+import { Track, useQueue } from 'discord-player';
 
 export default new Command({
   name: 'track',

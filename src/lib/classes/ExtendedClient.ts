@@ -11,7 +11,7 @@ import { promisify } from 'util';
 import mongoose from 'mongoose';
 import { I18n } from 'i18n';
 
-import { CommandType } from '../types/Command';
+import { CommandType } from '@/lib/interfaces/Command';
 import { Event } from './Event';
 import { Player } from 'discord-player';
 

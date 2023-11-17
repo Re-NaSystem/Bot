@@ -1,6 +1,6 @@
 import { ApplicationCommandOptionType, Colors, EmbedBuilder } from 'discord.js';
-import { Command } from '../../modules';
-import model from '../../models/language';
+import { Command } from '@/lib/classes/Command';
+import model from '@/lib/models/language';
 
 export default new Command({
   name: 'verification',

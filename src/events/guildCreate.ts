@@ -6,8 +6,8 @@ import {
   Colors,
   EmbedBuilder,
 } from 'discord.js';
-import { client } from '..';
-import { Event } from '../modules/index';
+import { client } from '@/index';
+import { Event } from '@/lib/classes/Event';
 
 export default new Event('guildCreate', async (guild) => {
   client.user?.setActivity({
@@ -53,5 +53,5 @@ export default new Event('guildCreate', async (guild) => {
       embeds: [embed],
       components: [button],
     })
-    .catch((e) => console.log(e));
+    .catch((e: Error) => console.log(e));
 });

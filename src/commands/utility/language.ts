@@ -1,5 +1,5 @@
-import { Command } from '../../modules';
-import model from '../../models/language';
+import { Command } from '@/lib/classes/Command';
+import model from '@/lib/models/language';
 import {
   ApplicationCommandOptionType,
   ChannelType,

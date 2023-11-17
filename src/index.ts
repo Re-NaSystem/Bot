@@ -1,6 +1,6 @@
 require('dotenv').config();
 import { EmbedBuilder, Colors } from 'discord.js';
-import { ExtendedClient } from './modules/index';
+import { ExtendedClient } from '@/lib/classes/ExtendedClient';
 import { Player } from 'discord-player';
 
 export const client = new ExtendedClient();

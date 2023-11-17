@@ -1,5 +1,5 @@
-import { client } from '..';
-import { Event } from '../modules/index';
+import { client } from '@/index';
+import { Event } from '@/lib/classes/Event';
 
 export default new Event('ready', async () => {
   console.log(`\x1b[36m${client.user?.tag} is now ready!\x1b[0m`);

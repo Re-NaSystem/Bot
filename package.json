@@ -8,9 +8,12 @@
     "build": "tsc -p .",
     "start": "node --trace-warnings dist/index.js",
     "dev": "ts-node -T src/index.ts",
-    "lint": "run-p lint:eslint format",
-    "lint:eslint": "eslint src/**/*",
-    "format": "prettier --write ."
+    "lint": "run-p lint:*",
+    "lint:eslint": "eslint ./src/* --ignore-path .prettierignore --max-warnings 0",
+    "lint:typecheck": "tsc --pretty --noEmit",
+    "format": "run-s format:eslint format:prettier",
+    "format:eslint": "yarn lint:eslint --fix",
+    "format:prettier": "prettier --write ."
   },
   "keywords": [],
   "author": "",
