@@ -2,7 +2,6 @@ import {
   ChatInputApplicationCommandData,
   ChatInputCommandInteraction,
   CommandInteractionOptionResolver,
-  Message,
   PermissionResolvable,
 } from 'discord.js';
 import { ExtendedClient } from '@/lib/classes/ExtendedClient';
