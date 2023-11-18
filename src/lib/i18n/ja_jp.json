@@ -22,9 +22,11 @@
       }
     },
     "verification": {
-      "panel": {
-        "title": "簡易認証",
-        "description": "ボタンをクリックして認証してください。\n認証完了後、ロールが付与されます"
+      "button": {
+        "panel": {
+          "title": "簡易認証",
+          "description": "ボタンをクリックして認証してください。\n認証完了後、ロールが付与されます"
+        }
       }
     },
     "language": {
