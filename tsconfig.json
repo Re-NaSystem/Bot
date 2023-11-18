@@ -21,6 +21,6 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true
   },
-  "include": ["src", "src/lib/interfaces/environment.d.ts", "src/i18n/*.json"],
+  "include": ["src", "src/lib/interfaces/environment.d.ts", "src/lib/i18n/*.json"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
