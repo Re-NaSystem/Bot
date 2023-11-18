@@ -23,7 +23,7 @@ export class ExtendedClient extends Client {
   public i18n = new I18n({
     locales: ['ja_jp', 'en_us'],
     defaultLocale: 'ja_jp',
-    directory: __dirname + '/../lib/i18n',
+    directory: __dirname + '/../../i18n',
     objectNotation: true,
   });
 
@@ -93,7 +93,7 @@ export class ExtendedClient extends Client {
     const slashCommands: ApplicationCommandDataResolvable[] = [];
 
     const commandFiles = await globPromise(
-      __dirname + `/../commands/*/*{.ts,.js}`
+      __dirname + `/../../commands/*/*{.ts,.js}`
     );
 
     for (const filePath of commandFiles) {
@@ -121,7 +121,7 @@ export class ExtendedClient extends Client {
         });
     });
 
-    const eventFiles = await globPromise(`${__dirname}/../events/*{.ts,.js}`);
+    const eventFiles = await globPromise(`${__dirname}/../../events/*{.ts,.js}`);
     for (const filePath of eventFiles) {
       const event: Event<keyof ClientEvents> = await this.importFile(filePath);
       this.on(event.event, event.run);
