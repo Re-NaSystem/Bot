@@ -15,16 +15,14 @@ const PlayHandler = async (
   if (!member?.voice.channelId) {
     return await interaction.followUp({
       embeds: [
-        new EmbedBuilder()
-          .setTitle(client.i18n.__('command.track.play.pls_join_vc.title'))
-          .setDescription(
-            client.i18n.__('command.track.play.pls_join_vc.description')
-          )
-          .setColor(Colors.Red)
-          .setFooter({
-            text: client.getUserData().footer,
-            iconURL: client.getUserData().icon,
-          }),
+        {
+          title: client.i18n.__('command.track.play.pls_join_vc.title'),
+          description: client.i18n.__(
+            'command.track.play.pls_join_vc.description'
+          ),
+          color: Colors.Red,
+          footer: client.footer(),
+        },
       ],
     });
   }
@@ -32,16 +30,14 @@ const PlayHandler = async (
   if (me?.voice.channelId && member.voice.channelId !== me?.voice.channelId) {
     return await interaction.followUp({
       embeds: [
-        new EmbedBuilder()
-          .setTitle(client.i18n.__('command.track.play.pls_join_botvc.title'))
-          .setDescription(
-            client.i18n.__('command.track.play.pls_join_botvc.description')
-          )
-          .setColor(Colors.Red)
-          .setFooter({
-            text: client.getUserData().footer,
-            iconURL: client.getUserData().icon,
-          }),
+        {
+          title: client.i18n.__('command.track.play.pls_join_botvc.title'),
+          description: client.i18n.__(
+            'command.track.play.pls_join_botvc.description'
+          ),
+          color: Colors.Red,
+          footer: client.footer(),
+        },
       ],
     });
   }
@@ -54,16 +50,14 @@ const PlayHandler = async (
     queue?.delete();
     return await interaction.followUp({
       embeds: [
-        new EmbedBuilder()
-          .setTitle(client.i18n.__('command.track.play.join_error.title'))
-          .setDescription(
-            client.i18n.__('command.track.play.join_error.description')
-          )
-          .setColor(Colors.Red)
-          .setFooter({
-            text: client.getUserData().footer,
-            iconURL: client.getUserData().icon,
-          }),
+        {
+          title: client.i18n.__('command.track.play.join_error.title'),
+          description: client.i18n.__(
+            'command.track.play.join_error.description'
+          ),
+          color: Colors.Red,
+          footer: client.footer(),
+        },
       ],
     });
   }
@@ -75,16 +69,14 @@ const PlayHandler = async (
   if (!track) {
     return await interaction.followUp({
       embeds: [
-        new EmbedBuilder()
-          .setTitle(client.i18n.__('command.track.play.track_not_found.title'))
-          .setDescription(
-            client.i18n.__('command.track.play.track_not_found.description')
-          )
-          .setColor(Colors.Red)
-          .setFooter({
-            text: client.getUserData().footer,
-            iconURL: client.getUserData().icon,
-          }),
+        {
+          title: client.i18n.__('command.track.play.track_not_found.title'),
+          description: client.i18n.__(
+            'command.track.play.track_not_found.description'
+          ),
+          color: Colors.Red,
+          footer: client.footer(),
+        },
       ],
     });
   }
@@ -97,36 +89,30 @@ const PlayHandler = async (
     track.tracks.forEach((x) => queue?.addTrack(x));
     await interaction.followUp({
       embeds: [
-        new EmbedBuilder()
-          .setTitle(client.i18n.__('command.track.play.add_track.title'))
-          .setDescription(
-            client.i18n
-              .__('command.track.play.add_track.playlist')
-              .replace('{count}', track.tracks.length.toString())
-          )
-          .setColor(Colors.Green)
-          .setFooter({
-            text: client.getUserData().footer,
-            iconURL: client.getUserData().icon,
-          }),
+        {
+          title: client.i18n.__('command.track.play.add_track.title'),
+          description: client.i18n
+            .__('command.track.play.add_track.playlist')
+            .replace('{count}', track.tracks.length.toString()),
+          color: Colors.Green,
+          footer: client.footer(),
+        },
       ],
     });
   } else {
     await interaction.followUp({
       embeds: [
-        new EmbedBuilder()
-          .setTitle(client.i18n.__('command.track.play.add_track.title'))
-          .setDescription(
-            client.i18n
-              .__('command.track.play.add_track.description')
-              .replace('{track}', track.tracks[0].title)
-          )
-          .setThumbnail(track.tracks[0].thumbnail)
-          .setColor(Colors.Green)
-          .setFooter({
-            text: client.getUserData().footer,
-            iconURL: client.getUserData().icon,
-          }),
+        {
+          title: client.i18n.__('command.track.play.add_track.title'),
+          description: client.i18n
+            .__('command.track.play.add_track.description')
+            .replace('{track}', track.tracks[0].title),
+          thumbnail: {
+            url: track.tracks[0].thumbnail,
+          },
+          color: Colors.Green,
+          footer: client.footer(),
+        },
       ],
     });
   }

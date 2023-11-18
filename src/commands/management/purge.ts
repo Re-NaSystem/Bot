@@ -33,14 +33,12 @@ export default new Command({
     if (!member || interaction.channel?.type !== ChannelType.GuildText) {
       return await interaction.reply({
         embeds: [
-          new EmbedBuilder()
-            .setTitle(client.i18n.__('error.unexpectederror.title'))
-            .setDescription(client.i18n.__('error.unexpectederror.description'))
-            .setColor(Colors.Red)
-            .setFooter({
-              text: client.getUserData().footer,
-              iconURL: client.getUserData().icon,
-            }),
+          {
+            title: client.i18n.__('error.unexpectederror.title'),
+            description: client.i18n.__('error.unexpectederror.description'),
+            color: Colors.Red,
+            footer: client.footer(),
+          },
         ],
       });
     }
@@ -48,16 +46,14 @@ export default new Command({
     if (!member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
       return await interaction.reply({
         embeds: [
-          new EmbedBuilder()
-            .setTitle(client.i18n.__('error.missingpermissions.title'))
-            .setDescription(
-              client.i18n.__('error.missingpermissions.manage_messages')
-            )
-            .setColor(Colors.Red)
-            .setFooter({
-              text: client.getUserData().footer,
-              iconURL: client.getUserData().icon,
-            }),
+          {
+            title: client.i18n.__('error.missingpermissions.title'),
+            description: client.i18n.__(
+              'error.missingpermissions.manage_messages'
+            ),
+            color: Colors.Red,
+            footer: client.footer(),
+          },
         ],
       });
     }
@@ -68,21 +64,17 @@ export default new Command({
 
     await interaction.reply({
       embeds: [
-        new EmbedBuilder()
-          .setTitle(client.i18n.__('command.purge.success.title'))
-          .setDescription(
-            client.i18n
-              .__('command.purge.success.description')
-              .replace(
-                '{messages}',
-                `${interaction.options.getNumber('amount') || '10'}`
-              )
-          )
-          .setColor(Colors.Green)
-          .setFooter({
-            text: client.getUserData().footer,
-            iconURL: client.getUserData().icon,
-          }),
+        {
+          title: client.i18n.__('command.purge.success.title'),
+          description: client.i18n
+            .__('command.purge.success.description')
+            .replace(
+              '{messages}',
+              `${interaction.options.getNumber('amount') || '10'}`
+            ),
+          color: Colors.Green,
+          footer: client.footer(),
+        },
       ],
     });
   },

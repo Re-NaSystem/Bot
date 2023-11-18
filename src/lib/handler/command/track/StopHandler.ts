@@ -9,13 +9,11 @@ const StopHandler = async (
   if (queue?.isEmpty() || !queue) {
     return interaction.followUp({
       embeds: [
-        new EmbedBuilder()
-          .setTitle(client.i18n.__('command.track.error.not_played'))
-          .setColor(Colors.Red)
-          .setFooter({
-            text: client.getUserData().footer,
-            iconURL: client.getUserData().icon,
-          }),
+        {
+          title: client.i18n.__('command.track.error.not_played'),
+          color: Colors.Red,
+          footer: client.footer(),
+        },
       ],
     });
   }
@@ -24,13 +22,11 @@ const StopHandler = async (
 
   await interaction.followUp({
     embeds: [
-      new EmbedBuilder()
-        .setTitle(client.i18n.__('command.track.stop'))
-        .setColor(Colors.Aqua)
-        .setFooter({
-          text: client.getUserData().footer,
-          iconURL: client.getUserData().icon,
-        }),
+      {
+        title: client.i18n.__('command.track.stop'),
+        color: Colors.Aqua,
+        footer: client.footer(),
+      },
     ],
   });
 };

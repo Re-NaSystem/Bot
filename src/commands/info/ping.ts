@@ -13,18 +13,14 @@ export default new Command({
 
     await interaction.followUp({
       embeds: [
-        new EmbedBuilder()
-          .setTitle(client.i18n.__('command.ping.title'))
-          .setDescription(
-            client.i18n
-              .__('command.ping.description')
-              .replace('{ping}', `${Date.now() - interaction.createdTimestamp}`)
-          )
-          .setColor(Colors.Aqua)
-          .setFooter({
-            text: client.getUserData().footer,
-            iconURL: client.getUserData().icon,
-          }),
+        {
+          title: client.i18n.__('command.ping.title'),
+          description: client.i18n
+            .__('command.ping.description')
+            .replace('{ping}', client.ws.ping.toString()),
+          color: Colors.Aqua,
+          footer: client.footer(),
+        },
       ],
     });
   },

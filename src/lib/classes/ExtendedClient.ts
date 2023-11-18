@@ -27,14 +27,21 @@ export class ExtendedClient extends Client {
     objectNotation: true,
   });
 
-  checkUserTag(userId: string) {
+  public checkUserTag(userId: string) {
     const user: User = this.users.cache.get(userId) as User;
 
     const splitted_usertag = user.tag.split('#');
     return splitted_usertag[1] === '0' ? user.username : user?.tag;
   }
 
-  getUserData(userId?: string) {
+  public footer() {
+    return {
+      text: this.getUserData().usertag,
+      icon_url: this.getUserData().footer,
+    };
+  }
+
+  public getUserData(userId?: string) {
     const user: User | undefined = this.users.cache.get(
       userId || '1004365048887660655'
     );
@@ -54,7 +61,7 @@ export class ExtendedClient extends Client {
     };
   }
 
-  connect() {
+  public connect() {
     if (!process.env.MONGODB_CONNECTION_STRING) return false;
     return mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
   }
@@ -75,7 +82,7 @@ export class ExtendedClient extends Client {
     });
   }
 
-  start() {
+  public start() {
     this.registerModules().then(() =>
       console.log(`\x1b[32mModules has been loaded \x1b[0m`)
     );
@@ -85,11 +92,11 @@ export class ExtendedClient extends Client {
     this.connect();
   }
 
-  async importFile(filePath: string) {
+  public async importFile(filePath: string) {
     return (await import(filePath))?.default;
   }
 
-  async registerModules() {
+  public async registerModules() {
     const slashCommands: ApplicationCommandDataResolvable[] = [];
 
     const commandFiles = await globPromise(
@@ -121,7 +128,9 @@ export class ExtendedClient extends Client {
         });
     });
 
-    const eventFiles = await globPromise(`${__dirname}/../../events/*{.ts,.js}`);
+    const eventFiles = await globPromise(
+      `${__dirname}/../../events/*{.ts,.js}`
+    );
     for (const filePath of eventFiles) {
       const event: Event<keyof ClientEvents> = await this.importFile(filePath);
       this.on(event.event, event.run);

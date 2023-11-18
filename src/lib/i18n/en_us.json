@@ -22,9 +22,17 @@
       }
     },
     "verification": {
-      "panel": {
-        "title": "Easy-Verification",
-        "description": "Click on the button to authenticate.\nRoles will be assigned upon completion of authentication."
+      "button": {
+        "panel": {
+          "title": "Easy-Verification",
+          "description": "Click on the button to authenticate.\nRoles will be assigned upon completion of authentication."
+        }
+      },
+      "web": {
+        "panel": {
+          "title": "Web verification",
+          "description": "When you click the button, a one-time passcode and URL of the authentication page will be sent to your DM.\nEnter the one-time passcode in the code entry field on the authentication page, link it to the Bot, and complete authentication.\n\n* The DM must be made public.\n* The one-time passcode is valid for 3 minutes.\n* When you link with the Bot, the Bot will get your user name and user ID, but these information will not be saved."
+        }
       }
     },
     "language": {

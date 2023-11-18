@@ -84,14 +84,12 @@ export default new Command({
 
     interaction.followUp({
       embeds: [
-        new EmbedBuilder()
-          .setTitle(client.i18n.__('command.language.title'))
-          .setDescription(client.i18n.__('command.language.description'))
-          .setColor(Colors.Aqua)
-          .setFooter({
-            text: client.getUserData().footer,
-            iconURL: client.getUserData().icon,
-          }),
+        {
+          title: client.i18n.__('command.language.title'),
+          description: client.i18n.__('command.language.description'),
+          color: Colors.Aqua,
+          footer: client.footer(),
+        },
       ],
     });
   },
