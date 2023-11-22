@@ -16,16 +16,12 @@ const ButtonCaptchaHandler = async (
 ) => {
   return await interaction.followUp({
     embeds: [
-      new EmbedBuilder()
-        .setTitle(client.i18n.__('command.verification.button.panel.title'))
-        .setDescription(
-          client.i18n.__('command.verification.button.panel.description')
-        )
-        .setColor(Colors.Aqua)
-        .setFooter({
-          text: client.getUserData().footer,
-          iconURL: client.getUserData().icon,
-        }),
+      {
+        title: client.i18n.__('command.verification.button.panel.title'),
+        description: client.i18n.__('command.verification.button.panel.description'),
+        color: Colors.Aqua,
+        footer: client.footer()
+      }
     ],
     components: [
       new ActionRowBuilder<ButtonBuilder>().addComponents(
